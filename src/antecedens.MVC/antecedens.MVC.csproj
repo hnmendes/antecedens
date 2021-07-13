@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>antecedens.MVC</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JsonFlatFileDataStore" Version="2.2.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\antecedens.Application\antecedens.Application.csproj" />
+    <ProjectReference Include="..\antecedens.Infra\antecedens.Infra.csproj" />
+  </ItemGroup>
+
+</Project>

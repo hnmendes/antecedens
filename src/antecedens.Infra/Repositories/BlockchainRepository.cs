@@ -8,9 +8,16 @@ namespace antecedens.Infra.Repositories
     {
         public Block GetBlockByHash(string hash)
         {
-            var block = GetAll().Where(b => b.Hash == hash);
+            var block = GetAll().Where(b => b.Hash == hash).FirstOrDefault();
 
-            return block.FirstOrDefault();
+            return block;
+        }
+
+        public Block GetLastBlock()
+        {
+            var block = GetAll().LastOrDefault();
+
+            return block;
         }
     }
 }

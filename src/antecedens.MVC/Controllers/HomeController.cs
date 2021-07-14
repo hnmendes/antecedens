@@ -23,30 +23,7 @@ namespace antecedens.MVC.Controllers
         }
 
         public IActionResult Index()
-        {
-            var chain = new Chain
-            {
-                Nome = "Paulo Henrique",
-                CidadeNatal = "Caruaru/PE",
-                CodigoCertidaoAntecedente = "AB728332P",
-                CPF = "000.000.000-00",
-                DataNascimento = DateTime.Now,
-                DecisaoJudicialCondenatoria = "Nada Consta",
-                Identidade = "0000000",
-                Mae = "Eulina Cavalcanti",
-                Pai = "Helio Cavalcanti",
-                Nacionalidade = "Brasileira"
-            };
-
-            var block = new Block
-            {
-                AssociatedChain = chain,
-                Difficulty = 4,
-                Nonce = 0,
-            };
-
-            _blockChainApp.Add(block);
-
+        {            
             return View();
         }        
 

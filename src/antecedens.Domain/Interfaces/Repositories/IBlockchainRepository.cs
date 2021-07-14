@@ -5,5 +5,7 @@ namespace antecedens.Domain.Interfaces.Repositories
     public interface IBlockchainRepository : IRepositoryBase<Block>
     {
         Block GetBlockByHash(string hash);
+
+        Block GetLastBlock();
     }
 }

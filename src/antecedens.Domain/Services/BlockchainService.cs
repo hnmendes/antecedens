@@ -19,5 +19,10 @@ namespace antecedens.Domain.Services
         {
             return _repository.GetBlockByHash(hash);
         }
+
+        public Block GetLastBlock()
+        {
+            return _repository.GetLastBlock();
+        }
     }
 }

@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace antecedens.MVC.ExtensionMethods
+namespace antecedens.Application.ExtensionMethods
 {
     public static class HashExtensionMethod
     {

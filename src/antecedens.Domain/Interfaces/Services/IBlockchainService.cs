@@ -5,5 +5,7 @@ namespace antecedens.Domain.Interfaces.Services
     public interface IBlockchainService : IServiceBase<Block>
     {
         Block GetBlockByHash(string hash);
+
+        Block GetLastBlock();
     }
 }

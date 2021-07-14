@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspose.PDF" Version="21.7.0" />
     <PackageReference Include="JsonFlatFileDataStore" Version="2.2.3" />
   </ItemGroup>
 

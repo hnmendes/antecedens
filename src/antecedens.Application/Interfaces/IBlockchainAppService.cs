@@ -1,5 +1,4 @@
-﻿
-using antecedens.Domain.Entities;
+﻿using antecedens.Domain.Entities;
 
 namespace antecedens.Application.Interfaces
 {
@@ -7,10 +6,6 @@ namespace antecedens.Application.Interfaces
     {
         Block GetBlockByHash(string hash);
 
-        new void Add(Block block);
-
-        bool IsValidHashDifficulty(string hash, int difficulty);
-
-        string GenerateHash(Block block); 
+        void Add(Chain chain);
     }
 }

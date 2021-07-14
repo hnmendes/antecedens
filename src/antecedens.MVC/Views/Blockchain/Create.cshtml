@@ -1,0 +1,74 @@
+﻿@model antecedens.Domain.Entities.Chain
+
+@{
+    ViewData["Title"] = "Add Blockchain";
+}
+
+<h1>Add Blockchain</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CodigoCertidaoAntecedente" class="control-label"></label>
+                <input asp-for="CodigoCertidaoAntecedente" class="form-control" />
+                <span asp-validation-for="CodigoCertidaoAntecedente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DecisaoJudicialCondenatoria" class="control-label"></label>
+                <input asp-for="DecisaoJudicialCondenatoria" class="form-control" />
+                <span asp-validation-for="DecisaoJudicialCondenatoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nacionalidade" class="control-label"></label>
+                <input asp-for="Nacionalidade" class="form-control" />
+                <span asp-validation-for="Nacionalidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pai" class="control-label"></label>
+                <input asp-for="Pai" class="form-control" />
+                <span asp-validation-for="Pai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mae" class="control-label"></label>
+                <input asp-for="Mae" class="form-control" />
+                <span asp-validation-for="Mae" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataNascimento" class="control-label"></label>
+                <input asp-for="DataNascimento" class="form-control" />
+                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CidadeNatal" class="control-label"></label>
+                <input asp-for="CidadeNatal" class="form-control" />
+                <span asp-validation-for="CidadeNatal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Identidade" class="control-label"></label>
+                <input asp-for="Identidade" class="form-control" />
+                <span asp-validation-for="Identidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CPF" class="control-label"></label>
+                <input asp-for="CPF" class="form-control" />
+                <span asp-validation-for="CPF" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

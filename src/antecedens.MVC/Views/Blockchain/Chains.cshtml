@@ -1,0 +1,89 @@
+﻿@model IEnumerable<antecedens.Domain.Entities.Block>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Chains</h1>
+
+<p>
+    <a asp-action="Create">Create New Chain</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AssociatedChain.CodigoCertidaoAntecedente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssociatedChain.DecisaoJudicialCondenatoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssociatedChain.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssociatedChain.Nacionalidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssociatedChain.Pai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssociatedChain.Mae)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssociatedChain.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssociatedChain.CidadeNatal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssociatedChain.Identidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssociatedChain.CPF)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssociatedChain.CodigoCertidaoAntecedente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssociatedChain.DecisaoJudicialCondenatoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssociatedChain.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssociatedChain.Nacionalidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssociatedChain.Pai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssociatedChain.Mae)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssociatedChain.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssociatedChain.CidadeNatal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssociatedChain.Identidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssociatedChain.CPF)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -3,6 +3,7 @@ using antecedens.Application.Interfaces;
 using antecedens.Domain.Entities;
 using antecedens.Domain.Interfaces.Services;
 using antecedens.Application.ExtensionMethods;
+using System.Collections.Generic;
 
 namespace antecedens.Application
 {
@@ -21,9 +22,15 @@ namespace antecedens.Application
             return _blockchainService.GetBlockByHash(hash);
         }
 
-        public new void Add(Block block)
+        public void Add(Chain chain)
         {
-            if(_blockchainService.GetAll().Count() == 0)
+            var blocks = _blockchainService.GetAll();
+            var block = new Block();
+
+            block.AssociatedChain = chain;
+            block.Difficulty = 1;
+
+            if (blocks.Count() == 0)
             {
                 block.Hash = GenerateHash(block);
             }
@@ -38,12 +45,12 @@ namespace antecedens.Application
             _blockchainService.Dispose();
         }
 
-        public Block GetLastBlock()
+        private Block GetLastBlock()
         {
             return _blockchainService.GetLastBlock();
         }
 
-        public bool IsValidHashDifficulty(string hash, int difficulty)
+        private bool IsValidHashDifficulty(string hash, int difficulty)
         {
             int count = 0;
 
@@ -60,8 +67,10 @@ namespace antecedens.Application
             return (count > difficulty);
         }
 
-        public string GenerateHash(Block block)
+        private string GenerateHash(Block block)
         {
+            var blocks = _blockchainService.GetAll();           
+
             int nonce = 0;
             
             string hash = string.Empty;            
@@ -72,12 +81,27 @@ namespace antecedens.Application
             
             while(!IsValidHashDifficulty(hash, block.Difficulty))
             {
-                nonce++;
-                block.Nonce = nonce;
-                hash = block.TimeStamp.Sha256Hash();
+                if (!IsNonceExisting(nonce))
+                {
+                    nonce++;
+                    block.Nonce = nonce;
+                    hash = block.TimeStamp.Sha256Hash();
+                }
+                else
+                {
+                    hash = block.TimeStamp.Sha256Hash();
+                    continue;                    
+                }
             }
 
             return hash;
+        }
+
+        private bool IsNonceExisting(int nonce)
+        {
+            var blocks = _blockchainService.GetAll();
+
+            return blocks.Any(b => b.Nonce == nonce);
         }
     }
 }

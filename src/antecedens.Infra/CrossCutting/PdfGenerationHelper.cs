@@ -27,8 +27,17 @@ namespace antecedens.Infra.CrossCutting
             string docTitle = "Antecedentes_Criminais-" + data.TimeStamp;
             document.SetTitle(docTitle);
 
+            
+
             var outputFileName = System.IO.Path.Combine(directory, docTitle + ".pdf");
-            await (Task.Run(() => document.Save(outputFileName)));
+            try
+            {
+                await (Task.Run(() => document.Save(outputFileName)));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
         }
 

@@ -1,7 +1,9 @@
-﻿using antecedens.Application.Interfaces;
+﻿using System;
+using antecedens.Application.Interfaces;
 using antecedens.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Configuration;
+using Microsoft.AspNetCore.Http;
 
 namespace antecedens.MVC.Controllers
 {
@@ -45,8 +47,17 @@ namespace antecedens.MVC.Controllers
             HttpContext.Response.Headers.Add("Content-Disposition", "inline; filename=" + nameFile);
 
             var path = directory + nameFile;
+            try
+            {
+                var stream = System.IO.File.OpenRead(path);
+                return File(stream, "application/pdf", nameFile);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return File(path, "application/pdf");
+            }
 
-            return File(path, "application/pdf");
         }
 
         // GET: BlockchainController/Create

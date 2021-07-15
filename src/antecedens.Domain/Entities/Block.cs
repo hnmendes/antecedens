@@ -6,12 +6,7 @@ namespace antecedens.Domain.Entities
     {
         public int Nonce { get; set; }
 
-        public string TimeStamp {
-            get
-            {
-                return DateTime.Now.ToString("ddMMyyyyHHmmssffff");
-            }
-        }
+        public string TimeStamp { get; set; }
 
         public string Hash { get; set; }
 

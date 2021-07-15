@@ -3,7 +3,8 @@ using antecedens.Application.Interfaces;
 using antecedens.Domain.Entities;
 using antecedens.Domain.Interfaces.Services;
 using antecedens.Application.ExtensionMethods;
-using System.Collections.Generic;
+using antecedens.Infra.CrossCutting;
+using System;
 
 namespace antecedens.Application
 {
@@ -29,6 +30,7 @@ namespace antecedens.Application
 
             block.AssociatedChain = chain;
             block.Difficulty = 1;
+            block.TimeStamp = DateTime.Now.ToString("ddMMyyyyHHmmssffff");
 
             if (blocks.Count() == 0)
             {
@@ -89,6 +91,8 @@ namespace antecedens.Application
                 }
                 else
                 {
+                    nonce++;
+                    block.Nonce = nonce;
                     hash = block.TimeStamp.Sha256Hash();
                     continue;                    
                 }
@@ -102,6 +106,16 @@ namespace antecedens.Application
             var blocks = _blockchainService.GetAll();
 
             return blocks.Any(b => b.Nonce == nonce);
+        }
+
+        public void CreatePdfFile(Block block)
+        {
+            PdfGenerationHelper.GenerateToDirectory(block);
+        }
+
+        public Block GetBlockByTimeStamp(string timeStamp)
+        {
+            return _blockchainService.GetBlockByTimeStamp(timeStamp);
         }
     }
 }

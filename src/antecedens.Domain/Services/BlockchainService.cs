@@ -1,8 +1,6 @@
 ﻿using antecedens.Domain.Entities;
 using antecedens.Domain.Interfaces.Repositories;
 using antecedens.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
 
 namespace antecedens.Domain.Services
 {
@@ -18,6 +16,11 @@ namespace antecedens.Domain.Services
         public Block GetBlockByHash(string hash)
         {
             return _repository.GetBlockByHash(hash);
+        }
+
+        public Block GetBlockByTimeStamp(string timeStamp)
+        {
+            return _repository.GetBlockByTimeStamp(timeStamp);
         }
 
         public Block GetLastBlock()

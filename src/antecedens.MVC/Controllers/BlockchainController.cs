@@ -1,24 +1,16 @@
 ﻿using antecedens.Application.Interfaces;
 using antecedens.Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace antecedens.MVC.Controllers
 {
     public class BlockchainController : Controller
-    {
-
-        private readonly ILogger<HomeController> _logger;
+    {        
         private readonly IBlockchainAppService _blockChainApp;
 
-        public BlockchainController(ILogger<HomeController> logger, IBlockchainAppService blockchainApp)
+        public BlockchainController(IBlockchainAppService blockchainApp)
         {
-            _logger = logger;
             _blockChainApp = blockchainApp;
         }
 
@@ -36,7 +28,26 @@ namespace antecedens.MVC.Controllers
             var blocks = _blockChainApp.GetAll();
 
             return View(blocks);
-        }        
+        }
+
+        // GET: BlockchainController/DownloadPDF    
+        [HttpGet]
+        public ActionResult DownloadPDF(string timeStamp)
+        {
+            string directory = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\";
+            
+            var block = _blockChainApp.GetBlockByTimeStamp(timeStamp);
+
+            string nameFile = "Antecedentes_Criminais-" + block.TimeStamp + ".pdf";            
+
+            _blockChainApp.CreatePdfFile(block);
+            
+            HttpContext.Response.Headers.Add("Content-Disposition", "inline; filename=" + nameFile);
+
+            var path = directory + nameFile;
+
+            return File(path, "application/pdf");
+        }
 
         // GET: BlockchainController/Create
         public ActionResult Create()

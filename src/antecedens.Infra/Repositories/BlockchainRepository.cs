@@ -13,6 +13,13 @@ namespace antecedens.Infra.Repositories
             return block;
         }
 
+        public Block GetBlockByTimeStamp(string timeStamp)
+        {
+            var block = GetAll().Where(b => b.TimeStamp == timeStamp).FirstOrDefault();
+
+            return block;
+        }
+
         public Block GetLastBlock()
         {
             var block = GetAll().LastOrDefault();

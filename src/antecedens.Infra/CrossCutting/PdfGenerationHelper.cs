@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using antecedens.Domain.Entities;
 using Aspose.Pdf;
 
@@ -9,23 +10,25 @@ namespace antecedens.Infra.CrossCutting
 {
     public class PdfGenerationHelper
     {
-        public static void GenerateToDirectory(string directory, Chain data)
+        public async static void GenerateToDirectory(Block data)
         {
             Document document = new Document();
 
+            string directory = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\";
+
             Page page = document.Pages.Add();
 
-            foreach (PropertyInfo prop in data.GetType().GetProperties())
+            foreach (PropertyInfo prop in data.AssociatedChain.GetType().GetProperties())
             {
-                string paragraph = prop.Name + ": " + prop.GetValue(data);
+                string paragraph = prop.Name + ": " + prop.GetValue(data.AssociatedChain);
                 page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment(paragraph));
             }
 
-            string docTitle = "Antecedentes Criminais - " + data.Nome;
+            string docTitle = "Antecedentes_Criminais-" + data.TimeStamp;
             document.SetTitle(docTitle);
 
             var outputFileName = System.IO.Path.Combine(directory, docTitle + ".pdf");
-            document.Save(outputFileName);
+            await (Task.Run(() => document.Save(outputFileName)));
 
         }
 

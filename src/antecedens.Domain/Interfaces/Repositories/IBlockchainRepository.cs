@@ -7,5 +7,7 @@ namespace antecedens.Domain.Interfaces.Repositories
         Block GetBlockByHash(string hash);
 
         Block GetLastBlock();
+
+        Block GetBlockByTimeStamp(string timeStamp);
     }
 }

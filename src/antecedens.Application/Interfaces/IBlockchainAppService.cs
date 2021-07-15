@@ -7,5 +7,9 @@ namespace antecedens.Application.Interfaces
         Block GetBlockByHash(string hash);
 
         void Add(Chain chain);
+
+        void CreatePdfFile(Block block);
+
+        Block GetBlockByTimeStamp(string timeStamp);
     }
 }

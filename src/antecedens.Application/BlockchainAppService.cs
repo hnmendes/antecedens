@@ -87,13 +87,13 @@ namespace antecedens.Application
                 {
                     nonce++;
                     block.Nonce = nonce;
-                    hash = block.TimeStamp.Sha256Hash();
+                    hash = DateTime.Now.ToString("ddMMyyyyHHmmssffff").Sha256Hash();
                 }
                 else
                 {
                     nonce++;
                     block.Nonce = nonce;
-                    hash = block.TimeStamp.Sha256Hash();
+                    hash = DateTime.Now.ToString("ddMMyyyyHHmmssffff").Sha256Hash();
                     continue;                    
                 }
             }
